@@ -89,9 +89,8 @@ body {
   font-size: 0.85rem;
 }
 
-.cards-container .card:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
+.cards-container .card .icon-wrapper:hover::before {
+  opacity: 0.5;
 }
 
 
