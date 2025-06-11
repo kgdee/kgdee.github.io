@@ -4,6 +4,24 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 
 
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --border-color: rgba(0, 0, 0, 0.5);
+  --label-color: rgba(173, 216, 230, 0.5);
+  --red: #f44336;
+  --green: #4caf50;
+  --blue: #3f51b5;
+  --lightblue: #2196f3;
+}
+
+.dark-theme {
+  --bg-color: #222;
+  --text-color: #eee;
+  --border-color: rgba(255, 255, 255, 0.5);
+  --label-color: rgba(93, 173, 226, 0.5);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,89 +31,156 @@
   border: none;
   text-decoration: none;
   line-height: 1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.truncated {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hidden {
   display: none !important;
 }
 
-p {
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
+.modal .modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: var(--bg-color);
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  background-color: transparent;
+  color: var(--text-color);
+}
 
 body {
-  font-family: 'Poppins', sans-serif;
-  color: #E0E0E0;
-  background-color: #121212;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .container {
-  max-width: 1440px;
+  max-width: 768px;
   margin: auto;
 }
 
-
 .app {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
   width: 100%;
   height: 100vh;
+  padding-top: 25px;
 }
 
-.cards-container {
+.header {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-.cards-container .card {
-  width: 90px;
+.header .search-box {
+  display: inline-flex;
+  width: 250px;
+  background-color: white;
+  color: #333;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+}
+
+.header .search-box input {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+.header .theme-toggle {
+  font-size: 1.75rem;
+  padding: 0;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.card-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 10px;
+}
+
+.card-container .message {
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+.card-container .item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  color: var(--text-color);
 }
 
-.cards-container .card .icon-wrapper {
-  position: relative;
-  overflow: hidden;
-  padding: 5px;
-  border-radius: 10px;
-}
-
-.cards-container .card .icon {
-  position: relative;
+.card-container .item .icon {
   width: 64px;
   height: 64px;
   object-fit: contain;
 }
 
-.cards-container .card .icon-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #3f51b5;
-  opacity: 0.2;
-}
-
-.cards-container .card .title {
-  color: #ccc;
+.card-container .item .title {
+  width: 64px;
   font-size: 0.85rem;
 }
-
-.cards-container .card .icon-wrapper:hover::before {
-  opacity: 0.5;
-}
-
-
-
-
 
 /* Media query for tablet screens (768px and below) */
 @media (max-width: 768px) {
@@ -105,8 +190,4 @@ body {
 /* Media query for mobile screens (480px and below) */
 @media (max-width: 480px) {
 
-  .cards-container .card {
-    width: 25%;
-    min-width: 64px;
-  }
 }
