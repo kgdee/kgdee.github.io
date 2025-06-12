@@ -1,8 +1,7 @@
 /*==================== GOOGLE FONTS ====================*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 /*==================== BOOTSTRAP ICONS ====================*/
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
-
 
 :root {
   --bg-color: #ffffff;
@@ -113,18 +112,43 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
+  padding: 10px;
   padding-top: 25px;
 }
 
 .header {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
   margin-bottom: 15px;
 }
 
-.header .search-box {
+.header .main-bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.header .main-bar .search-btn {
+  display: none;
+}
+
+.header .search-bar {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .search-bar > button {
+  font-size: 1.75rem;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.header .search-bar .search-box {
+  flex: 1;
+}
+
+.search-box {
   display: inline-flex;
   width: 250px;
   background-color: white;
@@ -137,13 +161,19 @@ body {
   padding: 10px 15px;
 }
 
-.header .search-box input {
+.search-box input {
   flex: 1;
   width: 100%;
   border: none;
 }
 
-.header .theme-toggle {
+.header .buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header .buttons > * {
   font-size: 1.75rem;
   padding: 0;
   background-color: transparent;
@@ -184,10 +214,24 @@ body {
 
 /* Media query for tablet screens (768px and below) */
 @media (max-width: 768px) {
-  
+  .app {
+    padding: 10px;
+  }
 }
 
 /* Media query for mobile screens (480px and below) */
 @media (max-width: 480px) {
+  .header .main-bar .search-box {
+    display: none;
+  }
+  .header .main-bar .search-btn {
+    display: inline-flex;
+  }
 
+  .header.search .main-bar {
+    display: none;
+  }
+  .header.search .search-bar {
+    display: flex;
+  }
 }

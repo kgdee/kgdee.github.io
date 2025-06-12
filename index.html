@@ -11,15 +11,36 @@
   </head>
   <body>
     <div class="app container">
-      <div class="header">
-        <h1 class="title">Kgdee.</h1>
-        <label class="search-box">
-          <input type="text" oninput="search(event.target.value)" placeholder="Type to search..." />
-          <div class="icon">
-            <i class="bi bi-search"></i>
+      <div class="header" id="header">
+        <div class="main-bar">
+          <h1 class="title">Kgdee.</h1>
+
+          <label class="search-box">
+            <input type="text" oninput="search(event.target.value)" placeholder="Type to search..." />
+            <div onclick="clearSearch()" class="clear-search-btn">
+              <i class="bi bi-search"></i>
+            </div>
+          </label>
+
+          <div class="buttons">
+            <button class="search-btn" onclick="toggleSearchBar()">
+              <i class="bi bi-search"></i>
+            </button>
+            <button class="theme-toggle" onclick="toggleTheme()"></button>
           </div>
-        </label>
-        <button class="theme-toggle" onclick="toggleTheme()"></button>
+        </div>
+
+        <div class="search-bar">
+          <button class="exit-btn" onclick="toggleSearchBar()">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+          <label class="search-box">
+            <input type="text" oninput="search(event.target.value)" placeholder="Type to search..." />
+          </label>
+          <button onclick="clearSearch()" class="clear-search-btn">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
       </div>
 
       <div class="card-container"></div>

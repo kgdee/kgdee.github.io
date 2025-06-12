@@ -1,9 +1,14 @@
 const projectName = "kgdee.github.io";
 const username = "kgdee";
 const cardContainer = document.querySelector(".card-container");
-const searchInput = document.querySelector(".search-box input");
+
+const header = document.getElementById("header")
+const searchBar = document.querySelector(".search-bar")
+const searchInputs = document.querySelectorAll(".search-box input");
+const clearSearchBtns = document.querySelectorAll(".clear-search-btn")
 
 let currentItems = [];
+let currentSearchTerms = ""
 
 let darkTheme = JSON.parse(localStorage.getItem(`${projectName}_darkTheme`)) || false;
 
@@ -32,7 +37,7 @@ async function fetchItems() {
 
 function displayItems(items = []) {
   if (items.length <= 0) {
-    if (searchInput.value) {
+    if (currentSearchTerms) {
       cardContainer.innerHTML = `<div class="message">No items found</div>`;
       return;
     }
@@ -56,9 +61,23 @@ function displayItems(items = []) {
 }
 
 function search(terms) {
+  if (!terms && currentSearchTerms === terms) return
+
   const query = terms.trim().toLowerCase();
+  currentSearchTerms = query
+  searchInputs.forEach(input => input.value = terms)
   const filteredItems = query ? currentItems.filter((item) => item.name.toLowerCase().includes(query)) : [];
   displayItems(filteredItems);
+
+  clearSearchBtns.forEach(btn => btn.innerHTML = query ? `<i class="bi bi-x-lg"></i>` : `<i class="bi bi-search"></i>`)
+}
+
+function clearSearch() {
+  search("")
+}
+
+function toggleSearchBar() {
+  header.classList.toggle("search")
 }
 
 function toggleTheme(force = undefined) {
