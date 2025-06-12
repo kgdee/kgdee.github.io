@@ -52,7 +52,7 @@ function displayItems(items = []) {
       const pageUrl = `https://${username}.github.io/${item.name}/`;
       return `
         <a href="${pageUrl}" class="item" data-repo-id="${item.id}">
-          <img src=${icon} class="icon">
+          <img src=${icon} class="icon" onerror="this.onerror=null;this.src='card-icon.png';">
           <p class="title truncated">${name}</p>
         </a>
       `;
