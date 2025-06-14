@@ -8,6 +8,7 @@
   --text-color: #333;
   --border-color: rgba(0, 0, 0, 0.5);
   --label-color: rgba(173, 216, 230, 0.5);
+  --special-color: #9c27b0;
   --red: #f44336;
   --green: #4caf50;
   --blue: #3f51b5;
@@ -19,6 +20,7 @@
   --text-color: #eee;
   --border-color: rgba(255, 255, 255, 0.5);
   --label-color: rgba(93, 173, 226, 0.5);
+  --special-color: #fff;
 }
 
 * {
@@ -128,6 +130,10 @@ body {
   gap: 10px;
 }
 
+.header .title {
+  color: var(--special-color);
+}
+
 .header .main-bar .search-btn {
   display: none;
 }
@@ -170,7 +176,7 @@ body {
 .header .buttons {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .header .buttons > * {
@@ -210,6 +216,7 @@ body {
 .card-container .item .title {
   width: 64px;
   font-size: 0.85rem;
+  text-align: center;
 }
 
 /* Media query for tablet screens (768px and below) */

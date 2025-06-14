@@ -2,13 +2,13 @@ const projectName = "kgdee.github.io";
 const username = "kgdee";
 const cardContainer = document.querySelector(".card-container");
 
-const header = document.getElementById("header")
-const searchBar = document.querySelector(".search-bar")
+const header = document.getElementById("header");
+const searchBar = document.querySelector(".search-bar");
 const searchInputs = document.querySelectorAll(".search-box input");
-const clearSearchBtns = document.querySelectorAll(".clear-search-btn")
+const clearSearchBtns = document.querySelectorAll(".clear-search-btn");
 
 let currentItems = [];
-let currentSearchTerms = ""
+let currentSearchTerms = "";
 
 let darkTheme = JSON.parse(localStorage.getItem(`${projectName}_darkTheme`)) || false;
 
@@ -47,7 +47,7 @@ function displayItems(items = []) {
   cardContainer.innerHTML = "";
   cardContainer.innerHTML = items
     .map((item) => {
-      const name = item.name.replace(/-/g, " ");
+      const name = formatItemName(item.name);
       const icon = `https://${username}.github.io/${item.name}/favicon.png`;
       const pageUrl = `https://${username}.github.io/${item.name}/`;
       return `
@@ -60,24 +60,30 @@ function displayItems(items = []) {
     .join("");
 }
 
+function formatItemName(str) {
+  return str
+    .replace(/-/g, " ") // Replace hyphens with spaces
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+}
+
 function search(terms) {
-  if (!terms && currentSearchTerms === terms) return
+  if (!terms && currentSearchTerms === terms) return;
 
   const query = terms.trim().toLowerCase();
-  currentSearchTerms = query
-  searchInputs.forEach(input => input.value = terms)
+  currentSearchTerms = query;
+  searchInputs.forEach((input) => (input.value = terms));
   const filteredItems = query ? currentItems.filter((item) => item.name.toLowerCase().includes(query)) : [];
   displayItems(filteredItems);
 
-  clearSearchBtns.forEach(btn => btn.innerHTML = query ? `<i class="bi bi-x-lg"></i>` : `<i class="bi bi-search"></i>`)
+  clearSearchBtns.forEach((btn) => (btn.innerHTML = query ? `<i class="bi bi-x-lg"></i>` : `<i class="bi bi-search"></i>`));
 }
 
 function clearSearch() {
-  search("")
+  search("");
 }
 
 function toggleSearchBar() {
-  header.classList.toggle("search")
+  header.classList.toggle("search");
 }
 
 function toggleTheme(force = undefined) {
