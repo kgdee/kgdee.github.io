@@ -47,6 +47,7 @@ function displayItems(items = []) {
   cardContainer.innerHTML = "";
   cardContainer.innerHTML = items
     .map((item) => {
+      if (item.name === projectName) return ""
       const name = formatItemName(item.name);
       const icon = `https://${username}.github.io/${item.name}/favicon.png`;
       const pageUrl = `https://${username}.github.io/${item.name}/`;
@@ -83,6 +84,7 @@ function clearSearch() {
 }
 
 function toggleSearchBar() {
+  clearSearch()
   header.classList.toggle("search");
 }
 
